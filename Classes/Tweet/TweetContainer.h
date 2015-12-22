@@ -5,38 +5,36 @@
 
 class UserTweet;
 class MyTweet;
-
+//used to hold a tweet
 class UserTweet{
 	protected:
+		//holds the tweet
 		Tweet* post;
-		Tweet* rePost;
-		bool liked, reTweet;
 	public:
 		UserTweet();
 		UserTweet(Tweet*);
-		~UserTweet();
-		bool isLiked() const;
-		bool isReTweet() const;
+		//gets the tweet
 		Tweet* getTweet() const;
+		//resets the tweet
 		void setPost(Tweet*);
-		void changeLiked();
-		Tweet* changeReTweet(const string, const string);
-		Tweet* getRePost();
+		//overloaded operators for templatized data structures
 		bool operator==(const UserTweet&) const;
 		bool operator!=(const UserTweet&) const;
 		friend bool operator<(const UserTweet& lhs, const UserTweet& rhs){
 			return lhs.getTweet() < rhs.getTweet();
 		}
 		friend ostream &operator << (ostream& strm, const UserTweet& obj){
+			//prints out the tweet
 			strm << *obj.getTweet();
 			return strm;
 		}
 };
-//whenever a new MyTweet update all followers
+//used to return the tweet memory
 class MyTweet : public UserTweet{
 	public:
 		MyTweet();
 		MyTweet(Tweet*);
+		//returns the tweet memory
 		void clearTweet();
 };
 

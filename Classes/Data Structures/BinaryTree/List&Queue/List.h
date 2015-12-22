@@ -28,7 +28,7 @@ class List{
 		//pos starts at 0
 		T getDataPos(const int pos);
 		T getData(const T);
-		Queue<T> toQueue();
+		void toQueue(Queue<T>&);
 		//adds node to front
 		void addFront(const T data);
 		//adds node next to node of same data
@@ -44,6 +44,7 @@ class List{
 		void clearList();
 		//add a node in the beginning, middle, or end of the list given by a choice of the user
 		void addAnywhere(const T data, const int position);
+		void toString();
 };
 //constructor
 template <class T> 
@@ -227,16 +228,23 @@ T List<T>::getData(const T data){
 }
 
 template <class T>
-Queue<T> List<T>::toQueue(){
-	Queue<T> tempQ;
-	if(this->head != NULL){
+void List<T>::toString(){
+	Node<T>* temp = head;
+	while(temp){
+		std::cout << temp->getData() << std::endl;
+		temp = temp->getNext();
+	}
+}
+
+template <class T>
+void List<T>::toQueue(Queue<T>& tempQ){
+	if(head != NULL){
 		Node<T>* temp = head;
-		while(temp->getNext() != NULL){
+		while(temp){
 			tempQ.add(temp->getData());
 			temp = temp->getNext();
 		}
 	}
-	return tempQ;
 }
 
 #endif
